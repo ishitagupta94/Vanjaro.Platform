@@ -31,13 +31,18 @@ namespace Vanjaro.Container
                         {
                             var splitarray = action.Url.Split('#');
                             url = splitarray[0];
-                            if (url.Contains("?"))
-                                url += "&skinsrc=" + "[g]skins/vanjaro/base";
-                            else
-                                url += "?skinsrc=" + "[g]skins/vanjaro/base";
-                            if (splitarray.Length > 1)
-                                url += "#" + splitarray[1];
-                        }
+
+							if (!action.Url.Contains("javascript:"))
+							{
+								if (url.Contains("?"))
+									url += "&skinsrc=" + "[g]skins/vanjaro/base";
+								else
+									url += "?skinsrc=" + "[g]skins/vanjaro/base";
+
+								if (splitarray.Length > 1)
+									url += "#" + splitarray[1];
+							}
+						}
                         JsonAction += "{\"Title\":\"" + action.Title + "\", \"Icon\":\"" + action.Icon + "\",\"Url\":\"" + url + "\",\"NewWindow\":\"" + action.NewWindow + "\",\"ModuleId\":\"" + ModuleConfiguration.ModuleID + "\"},";
                     }
                 }
